@@ -1,72 +1,54 @@
-html,
-body {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+const navs = [{
+    Text: ' Home ',
+    Url: 'index.html',
+    Class: ' Home ',
+    Alt: ' Click here to view the home link '
+},
+{
+    Text: ' Link-1 ',
+    Url: ' link-1.html ',
+    Class: ' link-1',
+    Alt: ' Click Here to visit Link-1 '
+},
+{
+    Text: ' Link-2 ',
+    Url: ' link-2.html',
+    Class: ' link-2 ',
+    Alt: ' Click here to visit Link-2 '
+},
+{
+    Text: ' Link-3 ',
+    Url: ' link-3.html ',
+    Class: ' Click here to visit Link-3 ',
+    Alt: ' Click Here to visit Link 3 '
 }
 
-header {
-    background-color: green;
-    border-bottom: 4px black solid;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+
+];
+
+// Loop that places list items to create the navBar. 
+const navBarMarkup = `
+${navs.map(nav => `<li class="navlink"><a href=${nav.Url} class="${nav.Class}" alt="${nav.Alt}">${nav.Text}</a>`).join(' ')}</li>
+`;
+
+document.querySelector(' ul ').innerHTML = navBarMarkup;
+
+// Creates hamburger icon for mobile navigation
+
+// Select HTML objects
+
+const burger = document.querySelector('.burger i');
+const nav = document.querySelector('.nav');
+
+// Defining a function
+
+function toggleNav(){
+burger.classList.toggle('fa-bars');
+burger.classList.toggle('fa-times');
+nav.classList.toggle('nav-active');
 }
 
-.logo {
-    color: #ffffff;
-    letter-spacing: 3px;
-}
-
-.nav {
-    display: flex;
-    justify-content: space-around;
-    width: 30%;
-}
-
-.navlink {
-    list-style-type: none;
-    margin: 0;
-}
-
-.navlink a {
-    color: #ccc;
-    text-decoration: none;
-    font-size: 1.2em;
-}
-
-.burger {
-    font-size: 1.2em;
-    display: none;
-}
-
-@media screen and (max-width: 678px) {
-    .burger {
-        display: block;
-        color: #ccc;
-    }
-    .nav {
-        margin: 0;
-        background: green;
-        position: absolute;
-        right: -100%;
-        top: 70px;
-        width: 50%;
-        height: calc(100% - 70px);
-        flex-direction: column;
-        justify-content: space-around;
-        padding: 0;
-        transition: all 400ms;
-    }
-    .navlink {
-        text-align: center;
-    }
-    .nav-active {
-        right: 0;
-    }
-}
+// Calling the function after click event occurs
+burger.addEventListener('click', function() {
+toggleNav();
+});
